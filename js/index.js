@@ -136,15 +136,11 @@ themeButton.addEventListener('click', () => {
     if (selectedTheme == 'dark') {
 
         metaThemeColor.setAttribute('content', '#25252D');
-        console.log(metaThemeColor);
-        console.log('is dark');
         
     }
     else {
 
         metaThemeColor.setAttribute('content', '#ECECF3');
-        console.log(metaThemeColor);
-        console.log('is light');
         
     }
 });
