@@ -119,6 +119,19 @@ if (selectedTheme) {
   document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
   themeButton.classList[selectedIcon === 'bxs-moon' ? 'add' : 'remove'](iconTheme);
 
+  let metaThemeColor = document.querySelector('meta[name=theme-color]');
+
+  if(selectedTheme === 'dark') {
+
+    metaThemeColor.setAttribute('content', '#25252D');
+
+  }
+  else {
+
+    metaThemeColor.setAttribute('content', '#ECECF3');
+
+  }
+
 }
 
 // Activate / deactivate the theme manually with the button
