@@ -1,22 +1,22 @@
 /*------------------ CLOCK --------------------*/
 const hour = document.getElementById('clock-hour'),
-      minutes = document.getElementById('clock-minutes'),
-      seconds = document.getElementById('clock-seconds');
+    minutes = document.getElementById('clock-minutes'),
+    seconds = document.getElementById('clock-seconds');
 
 /*------------------- CLOCK & DATE TEXT -----------------------*/
 const textHour = document.getElementById('text-hour'),
-      textMinutes = document.getElementById('text-minutes'),
-      textAmPm = document.getElementById('text-ampm'),
-      dateDay = document.getElementById('date-day'),
-      dateMonth = document.getElementById('date-month'),
-      dateYear = document.getElementById('date-year');
+    textMinutes = document.getElementById('text-minutes'),
+    textAmPm = document.getElementById('text-ampm'),
+    dateDay = document.getElementById('date-day'),
+    dateMonth = document.getElementById('date-month'),
+    dateYear = document.getElementById('date-year');
 
 const clock = (date) => {
 
     let hh = date.getHours() * 30,
         mm = date.getMinutes() * 6,
         ss = date.getSeconds() * 6;
-        
+
     hour.style.transform = `rotateZ(${hh + mm / 12}deg)`;
     minutes.style.transform = `rotateZ(${mm}deg)`;
     seconds.style.transform = `rotateZ(${ss}deg)`;
@@ -34,7 +34,7 @@ const clockText = (date) => {
         months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     // We change the hours from 24 to 12 hours and establish whether it is AM or PM
-    if(hh >= 12) {
+    if (hh >= 12) {
 
         hh = hh - 12;
         ampm = 'PM';
@@ -48,14 +48,14 @@ const clockText = (date) => {
 
     /*--------------- HH ---------------*/
     // We detect when it's 0 AM and transform to 12 AM
-    if(hh == 0) {
+    if (hh == 0) {
 
         hh = 12;
 
     }
 
     // Show a zero before hours
-    if(hh < 10) {
+    if (hh < 10) {
 
         hh = `0${hh}`;
 
@@ -63,15 +63,15 @@ const clockText = (date) => {
 
     // Show time
     textHour.innerHTML = `${hh}:`;
-    
+
     /*-------------- MM -----------------*/
     // Show a zero before the minutes
-    if(mm < 10) {
-        
+    if (mm < 10) {
+
         mm = `0${mm}`;
-    
+
     }
-    
+
     // Show minutes
     textMinutes.innerHTML = mm;
 
@@ -115,22 +115,9 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'bxs-mo
 
 // We validate if the user previously chose a topic
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
-  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
-  themeButton.classList[selectedIcon === 'bxs-moon' ? 'add' : 'remove'](iconTheme);
-
-  let metaThemeColor = document.querySelector('meta[name=theme-color]');
-
-  if(selectedTheme === 'dark') {
-
-    metaThemeColor.setAttribute('content', '#25252D');
-
-  }
-  else {
-
-    metaThemeColor.setAttribute('content', '#ECECF3');
-
-  }
+    // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+    themeButton.classList[selectedIcon === 'bxs-moon' ? 'add' : 'remove'](iconTheme);
 
 }
 
@@ -143,4 +130,21 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme());
     localStorage.setItem('selected-icon', getCurrentIcon());
 
+    let metaThemeColor = document.querySelector("meta[name='theme-color']");
+    let selectedTheme = getCurrentTheme();
+
+    if (selectedTheme == 'dark') {
+
+        metaThemeColor.setAttribute('content', '#25252D');
+        console.log(metaThemeColor);
+        console.log('is dark');
+        
+    }
+    else {
+
+        metaThemeColor.setAttribute('content', '#ECECF3');
+        console.log(metaThemeColor);
+        console.log('is light');
+        
+    }
 });
